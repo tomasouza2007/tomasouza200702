@@ -10,7 +10,7 @@ class CalculadoraServiceTest {
 
     @Test
     void deveSomar() {
-        assertEquals(99, service.somar(5, 3)); // valor errado propositalmente
+        assertEquals(8, service.somar(5, 3)); // valor errado propositalmente
     }
 
     @Test
