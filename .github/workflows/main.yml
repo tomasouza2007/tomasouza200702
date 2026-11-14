@@ -1,0 +1,27 @@
+name: Análise Estática - Java
+
+on:
+  push:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  analisar-codigo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Análise estática com Super-Linter
+        uses: super-linter/super-linter@v9.0.0
+        env:
+          VALIDATE_JAVA: true
+          VALIDATE_ALL_CODEBASE: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
