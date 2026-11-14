@@ -1,16 +1,29 @@
-name: Calculadora
+name: Primeiro Workflow
+
 on:
-    push:
+  push:
+
 jobs:
-    testes:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
-            - name: Configurar o Java
-              uses: actions/setup-java@v4
-              with:
-                distribution: 'temurin'
-                java-version: '21'
-            - name: Executar os testes
-              run: mvn test
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+
+      - name: Exibir informações
+        run: |
+          echo "Repositório: $GITHUB_REPOSITORY"
+          echo "Usuário: $GITHUB_ACTOR"
+
+      - name: Verificar README
+        run: test -f README.md
+
+      - name: Compilar projeto
+        run: mvn clean compile
